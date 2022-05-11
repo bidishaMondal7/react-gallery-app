@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { Form } from 'react-bootstrap';
 import './Login.css';
+
 export default function Login() {
+  const [userName, setUsername] = useState('');
+  const onUserNameChange = (event) => {
+    console.log(event.target.value);
+    setUsername(event.target.value);
+  };
+  const onPasswordChange = (event) => {
+    console.log(event.target.value);
+  };
   return (
     <div className="login-div">
       <span>User ID</span>
-      <input type="text" name="user-id" />
+      <input type="text" onChange={onUserNameChange} value={userName} />
       <br />
       <span>Password</span>
-      <input type="password" name="user-id" />
+      <input type="password" onChange={onPasswordChange} />
       <br />
       <button>Login</button>
     </div>
