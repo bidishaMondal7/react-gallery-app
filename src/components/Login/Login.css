@@ -1,10 +1,33 @@
-.login-div{
+/* .login-div{
+   /* text-align: center;
+    width: 500px;
+    height: 200px;
+    position: relative;
+    display: block; */
+    
+/* }  */
+
+.sub-login-div{
     text-align: center;
-    align-items: center;
-    padding: 10px;
-    margin: 5px;
-    width: 70px;
-    height: 70px;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 10%;
+    padding: 5px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px rgb(116, 75, 75);
+    /* text-align: center;
+    width: 250px;
+    height: 100px;
+    padding: 20px;
+    margin: 5px;    
     border-width: 2px;
-    border-color: black;
+    border-color: black; */
+    background-color: salmon;
+    /* position: relative; */
+}
+.sub-login-div hr{
+    width: 50px;
+    background-color: black;
+    margin-bottom: 20px;
 }

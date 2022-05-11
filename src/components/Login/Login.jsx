@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './Login.css';
 
 export default function Login() {
@@ -13,13 +13,19 @@ export default function Login() {
   };
   return (
     <div className="login-div">
-      <span>User ID</span>
-      <input type="text" onChange={onUserNameChange} value={userName} />
-      <br />
-      <span>Password</span>
-      <input type="password" onChange={onPasswordChange} />
-      <br />
-      <button>Login</button>
+      <div className="sub-login-div">
+        <h2>Login</h2>
+        <hr />
+        <span> User ID </span>
+        <input type="text" onChange={onUserNameChange} value={userName} />
+        <br />
+        <br />
+        <span> Password </span>
+        <input type="password" onChange={onPasswordChange} />
+        <br />
+        <br />
+        <Button className="success">Login</Button>
+      </div>
     </div>
     // <Form>
     //   <Form.Group className="mb-3" controlId="formBasicEmail">
