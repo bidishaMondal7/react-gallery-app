@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import Signup from '../Signup/Signup';
+import { Link } from 'react-router-dom';
+// import LoginSignupContainer from './containers/LoginSignupContainer/LoginSignupContainer';
+
 import './Login.css';
 
 export default function Login() {
@@ -12,11 +14,8 @@ export default function Login() {
   const onPasswordChange = (event) => {
     console.log(event.target.value);
   };
-  const [onCheckuser, setonCheckuser] = useState(false);
-  console.log(onCheckuser);
-  return onCheckuser === true ? (
-    <Signup />
-  ) : (
+
+  return (
     <div className="login-div">
       <div className="sub-login-div">
         <h2>Login</h2>
@@ -30,8 +29,7 @@ export default function Login() {
         <br />
         <br />
         <Button className="success">Login</Button>
-        <input type="checkbox" onClick={() => setonCheckuser(true)} />
-        <label>New User? Please sign up</label>
+        <Link to="/signup">New User? Please sign up</Link>
         <br></br>
       </div>
     </div>
