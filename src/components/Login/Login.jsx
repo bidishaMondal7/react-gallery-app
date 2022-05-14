@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Signup from '../Signup/Signup';
 import './Login.css';
 
 export default function Login() {
@@ -11,7 +12,11 @@ export default function Login() {
   const onPasswordChange = (event) => {
     console.log(event.target.value);
   };
-  return (
+  const [onCheckuser, setonCheckuser] = useState(false);
+  console.log(onCheckuser);
+  return onCheckuser === true ? (
+    <Signup />
+  ) : (
     <div className="login-div">
       <div className="sub-login-div">
         <h2>Login</h2>
@@ -25,23 +30,10 @@ export default function Login() {
         <br />
         <br />
         <Button className="success">Login</Button>
+        <input type="checkbox" onClick={() => setonCheckuser(true)} />
+        <label>New User? Please sign up</label>
+        <br></br>
       </div>
     </div>
-    // <Form>
-    //   <Form.Group className="mb-3" controlId="formBasicEmail">
-    //     <Form.Label>Email address</Form.Label>
-    //     <Form.Control type="email" placeholder="Enter email" />
-    //     <Form.Text className="text-muted">
-    //       We will never share your email with anyone else.
-    //     </Form.Text>
-    //   </Form.Group>
-    //   <Form.Group className="mb-3" controlId="formBasicPassword">
-    //     <Form.Label>Password</Form.Label>
-    //     <Form.Control type="password" placeholder="Password" />
-    //   </Form.Group>
-    //   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    //     <Form.Check type="checkbox" label="Check me out" />
-    //   </Form.Group>
-    // </Form>
   );
 }
