@@ -1,13 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login/Login';
+import HomeScreen from './containers/HomeScreen/HomeScreen';
+import LoginSignupContainer from './containers/LoginSignupContainer/LoginSignupContainer';
+import RootProvider from './contexts/RootProvider';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
+    <RootProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginSignupContainer />} />
+          <Route path="/home" element={<HomeScreen />} />
+        </Routes>
+      </Router>
+    </RootProvider>
   );
 }
 
