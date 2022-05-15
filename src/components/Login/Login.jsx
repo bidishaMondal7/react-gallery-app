@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 // import LoginSignupContainer from './containers/LoginSignupContainer/LoginSignupContainer';
 
-import './Login.css';
+import '../shared/Loginsignup.css';
 
 export default function Login() {
   const [userName, setUsername] = useState('');
@@ -29,8 +29,9 @@ export default function Login() {
         <br />
         <br />
         <Button className="success">Login</Button>
+        <br />
+        <br />
         <Link to="/signup">New User? Please sign up</Link>
-        <br></br>
       </div>
     </div>
   );
