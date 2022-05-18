@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 // import LoginSignupContainer from './containers/LoginSignupContainer/LoginSignupContainer';
 
-import '../shared/Loginsignup.css';
-
 export default function Login() {
   const [userName, setUsername] = useState('');
   const onUserNameChange = (event) => {
