@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-// import LoginSignupContainer from './containers/LoginSignupContainer/LoginSignupContainer';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
-  const [userName, setUsername] = useState('');
-  const onUserNameChange = (event) => {
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+
+  const onUserEmailChange = (event) => {
     console.log(event.target.value);
-    setUsername(event.target.value);
+    setUserEmail(event.target.value);
   };
   const onPasswordChange = (event) => {
     console.log(event.target.value);
+    setUserPassword(event.target.value);
+  };
+  const onClicklogin = () => {
+    signInWithEmailAndPassword(auth, userEmail, userPassword)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user, 'User Logged in');
+        navigate(`/home`);
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(' user not logged in', errorMessage);
+      });
   };
 
   return (
@@ -19,14 +37,16 @@ export default function Login() {
         <h2>Login</h2>
         <hr />
         <span> User ID </span>
-        <input type="text" onChange={onUserNameChange} value={userName} />
+        <input type="text" onChange={onUserEmailChange} />
         <br />
         <br />
         <span> Password </span>
         <input type="password" onChange={onPasswordChange} />
         <br />
         <br />
-        <Button className="success">Login</Button>
+        <Button className="success" onClick={onClicklogin}>
+          Login
+        </Button>
         <br />
         <br />
         <Link to="/signup">New User? Please sign up</Link>
