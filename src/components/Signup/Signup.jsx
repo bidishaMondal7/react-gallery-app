@@ -1,34 +1,26 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../config/config';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signup } from '../../apis/auth';
 
 export default function Signup() {
   const navigate = useNavigate();
   const [userPassword, setPassword] = useState('');
   const [userEmail, setEmail] = useState('');
   const onPasswordChange = (event) => {
-    // console.log(event.target.value);
     setPassword(event.target.value);
   };
   const onEmailChange = (event) => {
-    // console.log(event.target.value);
     setEmail(event.target.value);
   };
   const onButtonClick = () => {
     console.log('Email :', userEmail, 'Password:', userPassword);
-    createUserWithEmailAndPassword(auth, userEmail, userPassword)
+    signup(userEmail, userPassword)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        navigate(`/login`);
+        console.log(userCredential);
+        navigate('/login');
       })
-      .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+      .catch((error) => console.log(error));
   };
   return (
     <div className="login-div">

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../config/config';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { login } from '../../apis/auth';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -10,25 +9,18 @@ export default function Login() {
   const [userPassword, setUserPassword] = useState('');
 
   const onUserEmailChange = (event) => {
-    console.log(event.target.value);
     setUserEmail(event.target.value);
   };
   const onPasswordChange = (event) => {
-    console.log(event.target.value);
     setUserPassword(event.target.value);
   };
   const onClicklogin = () => {
-    signInWithEmailAndPassword(auth, userEmail, userPassword)
+    login(userEmail, userPassword)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user, 'User Logged in');
-        navigate(`/home`);
+        console.log(userCredential);
+        navigate('/home');
       })
-      .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(' user not logged in', errorMessage);
-      });
+      .catch((error) => console.log(error));
   };
 
   return (

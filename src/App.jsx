@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeScreen from './containers/HomeScreen/HomeScreen';
 import LoginSignupContainer from './containers/LoginSignupContainer/LoginSignupContainer';
-
 import RootProvider from './contexts/RootProvider';
 
 function App() {

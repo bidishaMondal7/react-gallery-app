@@ -13,9 +13,13 @@ function LoginSignupContainer() {
     Checking the path. If the path is /login we return Login component and
     if the path is /signup we return Signup component
   */
-  if (path === '/login') return <Login />;
-  if (path === '/signup') return <Signup />;
-  return '';
+  const getComponent = () => {
+    if (path === '/login') return <Login />;
+    if (path === '/signup') return <Signup />;
+    return '';
+  };
+
+  return <div>{getComponent()}</div>;
 }
 
 export default LoginSignupContainer;
