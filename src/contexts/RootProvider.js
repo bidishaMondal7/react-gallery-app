@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function RootProvider({ children }) {
+export default function RootProvider(props) {
   const RootContext = React.createContext();
 
   /*
@@ -8,5 +8,5 @@ export default function RootProvider({ children }) {
   */
   const [user, setUser] = useState(null);
 
-  return <RootContext.Provider value={{ user, setUser }}>{children}</RootContext.Provider>;
+  return <RootContext.Provider value={{ user, setUser }}>{props.children}</RootContext.Provider>;
 }
