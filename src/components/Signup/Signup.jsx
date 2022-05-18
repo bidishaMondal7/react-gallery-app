@@ -1,40 +1,51 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import '../shared/Loginsignup.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Signup() {
-  const [userName, setUsername] = useState('');
-
-  const onUserNameChange = (event) => {
-    console.log(event.target.value);
-    setUsername(event.target.value);
-  };
+  const navigate = useNavigate();
+  const [userPassword, setPassword] = useState('');
+  const [userEmail, setEmail] = useState('');
   const onPasswordChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
+    setPassword(event.target.value);
   };
   const onEmailChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
+    setEmail(event.target.value);
+  };
+  const onButtonClick = () => {
+    console.log('Email :', userEmail, 'Password:', userPassword);
+    createUserWithEmailAndPassword(auth, userEmail, userPassword)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        navigate(`/login`);
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
   return (
     <div className="login-div">
       <div className="sub-login-div">
         <h2>Sign Up</h2>
         <hr />
-        <span> User ID </span>
-        <input type="text" onChange={onUserNameChange} value={userName} />
+        <span> Email </span>
+        <input type="text" onChange={onEmailChange} />
         <br />
         <br />
         <span> Password </span>
         <input type="password" onChange={onPasswordChange} />
         <br />
         <br />
-        <span> Email </span>
-        <input type="text" onChange={onEmailChange} />
-        <br />
-        <br />
-        <Button className="success">Sign Up</Button>
+        <button className="success" onClick={onButtonClick}>
+          Sign Up
+        </button>
         <Link to="/login">Already Signed? Login</Link>
       </div>
     </div>

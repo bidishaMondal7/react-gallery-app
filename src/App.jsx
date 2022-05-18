@@ -10,8 +10,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<LoginSignupContainer />} />
-          <Route path="/home" element={<HomeScreen />} />
           <Route path="/signup" element={<LoginSignupContainer />} />
+          <Route path="/home" element={<HomeScreen />} />
         </Routes>
       </Router>
     </RootProvider>
