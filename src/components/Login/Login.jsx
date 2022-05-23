@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../apis/auth';
+import { LoginContext } from '../../constants/detailsprovider';
 
 export default function Login() {
+  const values = useContext(LoginContext);
+  console.log(values, 'testtttt');
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
