@@ -2,11 +2,10 @@ import React, { useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../apis/auth';
-import { LoginContext } from '../../constants/detailsprovider';
+import { RootContext } from '../../contexts/RootContext';
 
 export default function Login() {
-  const values = useContext(LoginContext);
-  console.log(values, 'testtttt');
+  const userContext = useContext(RootContext);
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -21,6 +20,7 @@ export default function Login() {
     login(userEmail, userPassword)
       .then((userCredential) => {
         console.log(userCredential);
+        userContext.setUser(userCredential); //updating state of RootContext
         navigate('/home');
       })
       .catch((error) => console.log(error));
