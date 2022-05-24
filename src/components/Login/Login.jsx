@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../apis/auth';
 import { RootContext } from '../../contexts/RootContext';
+import Button from '../shared/Button/Button';
 
 export default function Login() {
   const userContext = useContext(RootContext);
@@ -16,14 +16,15 @@ export default function Login() {
   const onPasswordChange = (event) => {
     setUserPassword(event.target.value);
   };
-  const onClicklogin = () => {
-    login(userEmail, userPassword)
-      .then((userCredential) => {
-        console.log(userCredential);
-        userContext.setUser(userCredential); //updating state of RootContext
-        navigate('/home');
-      })
-      .catch((error) => console.log(error));
+  const onClicklogin = async () => {
+    try {
+      const userCredential = await login(userEmail, userPassword);
+      console.log(userCredential);
+      userContext.setUser(userCredential); //updating state of RootContext
+      navigate('/home');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -39,9 +40,7 @@ export default function Login() {
         <input type="password" onChange={onPasswordChange} />
         <br />
         <br />
-        <Button className="success" onClick={onClicklogin}>
-          Login
-        </Button>
+        <Button onClick={onClicklogin} buttonName="Login" />
         <br />
         <br />
         <Link to="/signup">New User? Please sign up</Link>

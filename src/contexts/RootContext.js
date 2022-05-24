@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const RootContext = React.createContext();
 function RootProvider(props) {
   /*
-  Setting user as a Root Provider because every Component would need user information throughout the application.
+  Setting user, theme as a Root Provider because every Component would need user information throughout the application.
   */
   const [user, setUser] = useState(null);
   const [theme, setTheme] = useState('black');
