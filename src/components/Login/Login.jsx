@@ -5,7 +5,7 @@ import { RootContext } from '../../contexts/RootContext';
 import Button from '../shared/Button/Button';
 
 export default function Login() {
-  const userContext = useContext(RootContext);
+  const rootContext = useContext(RootContext);
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -20,7 +20,7 @@ export default function Login() {
     try {
       const userCredential = await login(userEmail, userPassword);
       console.log(userCredential);
-      userContext.setUser(userCredential); //updating state of RootContext
+      rootContext.setUser(userCredential); //updating state of RootContext
       navigate('/home');
     } catch (error) {
       console.error(error);

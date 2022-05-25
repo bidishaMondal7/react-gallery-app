@@ -11,12 +11,9 @@ function RootProvider(props) {
   const [theme, setTheme] = useState('black');
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       setUser(user);
     });
-    return () => {
-      unsubscribe();
-    };
   }, []);
 
   return (
