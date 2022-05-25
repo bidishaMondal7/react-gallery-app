@@ -1,7 +1,8 @@
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  signOut
 } from 'firebase/auth';
 import { auth } from '../helpers/firebase';
 
@@ -21,5 +22,10 @@ export const forgetPassword = async () => {
 
 export const updateUserProfile = async (name) => {
   const result = await updateProfile(auth.currentUser, { displayName: name });
+  return result;
+};
+
+export const logout = async () => {
+  const result = await signOut(auth);
   return result;
 };
